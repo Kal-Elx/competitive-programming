@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    unsigned jackSize, jillSize, catalogNumber, res = 0;
+    unsigned jackSize, jillSize, catalogNumber, res;
 
     cin >> jackSize >> jillSize;
 
