@@ -11,9 +11,7 @@ int n, cmd, x = 0;
         queue<int> q;
         priority_queue<int> p;
         stack<int> s;
-        bool isQ = true;
-        bool isP = true;
-        bool isS = true;
+        bool isQ = true, isP = true, isS = true;
 
         for (int i = 0; i < n; ++i) {
             cin >> cmd >> x;
