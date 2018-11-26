@@ -6,9 +6,7 @@ using namespace std;
 int main()
 {
     map<string, string> dictionary;
-    string input;
-    string englishWord;
-    string foreignWord;
+    string input, englishWord, foreignWord;
 
     while (getline(cin, input)) {
         if (input == "") {
