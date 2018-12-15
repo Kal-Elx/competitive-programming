@@ -1,4 +1,4 @@
-#include <iostream>
+#include <stdio.h>
 #include <unordered_set>
 
 using namespace std;
@@ -6,20 +6,22 @@ using namespace std;
 int main() {
     unsigned jackSize, jillSize, catalogNumber, res;
 
-    cin >> jackSize >> jillSize;
+    scanf("%d",&jackSize);
+    scanf("%d",&jillSize);
 
     while (jackSize > 0 || jillSize > 0) {
         unordered_set<unsigned> collection;
         
         for (unsigned i = 0; i < jackSize + jillSize; ++i) {
-            cin >> catalogNumber;
+            scanf("%d",&catalogNumber);
             collection.insert(catalogNumber);
         }
         
         res = jackSize + jillSize - collection.size();
-        cin >> jackSize >> jillSize;
+        scanf("%d",&jackSize);
+        scanf("%d",&jillSize);
 
-        cout << res << endl;
+        printf("%d\n", res);
     }
 
     return 0;
