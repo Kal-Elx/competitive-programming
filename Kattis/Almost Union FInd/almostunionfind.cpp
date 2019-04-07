@@ -1,7 +1,4 @@
-/*
- * Inspiration from
- * https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86F18/html/UnionFind.html
- */
+//https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86F18/html/UnionFind.html
 
 #include <iostream>
 
