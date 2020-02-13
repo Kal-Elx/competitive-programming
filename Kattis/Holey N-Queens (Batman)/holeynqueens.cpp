@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <set>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 #include <algorithm>
@@ -11,9 +12,9 @@ using namespace std;
 int N, M, R, C, res = 0;
 set<pair<int, int>> holes;
 bool board[MAX_SIZE][MAX_SIZE];
-set<int> row;
-set<int> diagonalL;
-set<int> diagonalR;
+unordered_set<int> row;
+unordered_set<int> diagonalL;
+unordered_set<int> diagonalR;
 
 pair<int, int> getDiagonals(int r, int c) {
     int dl = r + c;
