@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include <set>
-#include <unordered_set>
 #include <utility>
-#include <vector>
 #include <algorithm>
 
 #define MAX_SIZE 12
@@ -10,11 +7,10 @@
 using namespace std;
 
 int N, M, R, C, res = 0;
-set<pair<int, int>> holes;
 bool board[MAX_SIZE][MAX_SIZE];
-unordered_set<int> row;
-unordered_set<int> diagonalL;
-unordered_set<int> diagonalR;
+bool row[MAX_SIZE];
+bool diagonalL[2*MAX_SIZE - 1];
+bool diagonalR[2*MAX_SIZE - 1];
 
 pair<int, int> getDiagonals(int r, int c) {
     int dl = r + c;
@@ -23,7 +19,7 @@ pair<int, int> getDiagonals(int r, int c) {
 }
 
 bool canPlace(int r, int c, int dl, int dr) {
-    return row.find(r) == row.end() && diagonalL.find(dl) == diagonalL.end() && diagonalR.find(dr) == diagonalR.end() && holes.find(make_pair(r, c)) == holes.end();
+    return !(board[r][c] || row[r] || diagonalL[dl] || diagonalR[dr]);
 }
 
 bool solve(int c) {
@@ -37,14 +33,14 @@ bool solve(int c) {
         pair<int, int> d = getDiagonals(r, c);
         if (canPlace(r, c, d.first, d.second)) {
             board[r][c] = true;
-            row.insert(r);
-            diagonalL.insert(d.first);
-            diagonalR.insert(d.second);
+            row[r] = true;
+            diagonalL[d.first] = true;
+            diagonalR[d.second] = true;
             foundSolution = foundSolution | solve(c+1);
             board[r][c] = false;
-            row.erase(r);
-            diagonalL.erase(d.first);
-            diagonalR.erase(d.second);
+            row[r] = false;
+            diagonalL[d.first] = false;
+            diagonalR[d.second] = false;
         }
     }
 
@@ -61,20 +57,17 @@ int main() {
             first = false;
         else
             printf("\n");
-        
-        holes.clear();
-        row.clear();
-        diagonalR.clear();
-        diagonalL.clear();
-        res = 0;
 
-        for (int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i)
             fill(board[i], board[i] + MAX_SIZE, false);
-        }
+        fill(row, row + MAX_SIZE, false);
+        fill(diagonalL, diagonalL + 2*MAX_SIZE - 1, false);
+        fill(diagonalR, diagonalR + 2*MAX_SIZE - 1, false);
+        res = 0;
 
         for (int i = 0; i < M; ++i) {
             scanf("%d %d", &R, &C);
-            holes.insert(make_pair(R, C));
+            board[R][C] = true;
         }
 
         solve(0);
