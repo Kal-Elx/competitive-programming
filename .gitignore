@@ -1,2 +1,4 @@
 *.exe
 *settings.json
+.vscode
+.DS_Store
