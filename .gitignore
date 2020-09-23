@@ -1,4 +1,12 @@
+# Unix executables
+*
+!*.*
+
+# Windows executables
 *.exe
-*settings.json
+
+# VS Code
 .vscode
+
+# macOS
 .DS_Store
